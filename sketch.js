@@ -23,6 +23,7 @@ function preload(){
   obstacle1 = loadImage("assets/stone.png");
   gameOverImg = loadImage("assets/gameOver.png");
   restartImg = loadImage("assets/restart.png");
+  upImg = loadImage("assets/up.png");
   jumpSound = loadSound("assets/jump.wav");
   collidedSound = loadSound("assets/collided.wav");
 }
@@ -55,7 +56,12 @@ function setup() {
 
   gameOver.visible = false;
   restart.visible = false;
-  
+
+  up =createImg("assets/up.png") 
+  up.position(700,350)
+  up.size(50,50)
+  up.mouseClicked(jump);
+
   
   shrubsGroup = new Group();
   obstaclesGroup = new Group();
@@ -77,7 +83,7 @@ function draw() {
     {
        jungle.x=400
     }
-   console.log(kangaroo.y)
+   //console.log(kangaroo.y)
     if(keyDown("space")&& kangaroo.y>270) {
       jumpSound.play();
       kangaroo.velocityY = -16;
@@ -241,3 +247,11 @@ function reset(){
   score = 0;
 }
 
+function jump()
+{
+  if(kangaroo.y>270)
+  {
+    jumpSound.play();
+    kangaroo.velocityY = -16;
+  }
+}
